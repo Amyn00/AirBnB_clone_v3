@@ -1,4 +1,4 @@
-# 0x02. AirBnB clone - MySQL
+# AirBnB clone - Part 3
 
 <img src="https://github.com/Amyn00/AirBnB_clone/blob/master/images/hbnb.png" height="200" width="1000"/>
 
