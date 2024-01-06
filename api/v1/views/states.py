@@ -65,6 +65,7 @@ app_views.route('/states/<state_id>', methods=['PUT'], strict_slashes=False)
 
 
 def update_state(state_id):
+    """update state by id"""
     state = storage.get(State, state_id)
     if not state:
         abort(404)

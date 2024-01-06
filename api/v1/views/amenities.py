@@ -68,6 +68,7 @@ app_views.route('/amenities/<amenity_id>',
 
 
 def update_amenity(amenity_id):
+    """update amenity by id"""
     amenity = storage.get(Amenity, amenity_id)
     if not amenity:
         abort(404)
