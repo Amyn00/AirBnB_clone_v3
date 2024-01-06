@@ -20,6 +20,7 @@ def get_stats():
     }
     return jsonify(stats)
 
+
 @app_views.route('/status')
 def status():
     """Return the status of the API."""
