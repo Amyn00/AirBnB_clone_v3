@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""define module states that handles all default RESTFul API actions"""
 from models import storage
 from models.state import State
 from flask import Flask, Blueprint, jsonify, abort, make_response, request
@@ -13,6 +14,7 @@ app_views.route('/states', methods=['GET'], strict_slashes=False)
 
 
 def get_states():
+    """get all states object"""
     all_states = storage.all(State).values()
     new_list = []
     for state in all_states:
@@ -24,6 +26,7 @@ app_views.route('/states/<state_id>', methods=['GET'], strict_slashes=False)
 
 
 def get_state_id(state_id):
+    """get state by id"""
     state = storage.get(State, state_id)
     if not state:
         abort(404)
@@ -34,6 +37,7 @@ app_views.route('/states/<state_id>', methods=['DELETE'], strict_slashes=False)
 
 
 def delete_state(state_id):
+    """delete state from engine storage"""
     state = storage.get(State, state)
     if not state:
         abort(404)
@@ -46,6 +50,7 @@ app_views.route('/states', methods=['POST'], strict_slashes=False)
 
 
 def create_state():
+    """update state from engine storage"""
     if not request.get_json():
         abort(400, description='Not a JSON')
     if 'name' not in request.get_json():
