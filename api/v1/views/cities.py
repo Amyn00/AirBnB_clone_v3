@@ -80,4 +80,3 @@ def update_city(city_id):
 
     storage.save()
     return jsonify(city.to_dict()), 200
-
