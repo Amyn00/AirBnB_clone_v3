@@ -32,7 +32,8 @@ class FileStorage:
         else:
             return {k: v for k, v in self.__objects.items()
                     if v.__class__ == cls}
-
+    
+    
     def new(self, obj):
         """sets in __objects the obj with key <obj class name>.id"""
         if obj is not None:
