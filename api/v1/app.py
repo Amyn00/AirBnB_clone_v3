@@ -3,7 +3,7 @@
 import os
 from models import storage
 from api.v1.views import app_views
-from flask import Flask, Blueprint
+from flask import Flask, Blueprint, jsonify, make_response
 
 
 app = Flask(__name__)
@@ -18,7 +18,7 @@ def teardown_appcontext(exception):
 @app.errorhandler(404)
 def not_found(error):
     """Handler for 404 errors, returns a JSON-formatted response."""
-    return make_response(jsonify({"error": "Not found"}), 404)
+    return make_response(jsonify({'error': 'Not found'}), 404)
 
 
 if __name__ == "__main__":
