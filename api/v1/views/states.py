@@ -38,7 +38,7 @@ app_views.route('/states/<state_id>', methods=['DELETE'], strict_slashes=False)
 
 def delete_state(state_id):
     """delete state from engine storage"""
-    state = storage.get(State, state)
+    state = storage.get(State, state_id)
     if not state:
         abort(404)
     storage.delete(state)
@@ -65,7 +65,7 @@ app_views.route('/states/<state_id>', methods=['PUT'], strict_slashes=False)
 
 
 def update_state(state_id):
-    state = storage.get(State, state)
+    state = storage.get(State, state_id)
     if not state:
         abort(404)
     if not request.get_json():
@@ -77,3 +77,11 @@ def update_state(state_id):
             setattr(state, k, v)
     storage.save()
     return make_response(jsonify(state.to_dict()), 200)
+
+
+# app_views.route('/testing', methods=['GET'], strict_slashes=False)
+
+
+# def testing():
+#     """get all states object"""
+#     return jsonify({'testing': 1212})
