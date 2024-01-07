@@ -47,16 +47,16 @@ def delete_review(review_id):
                  methods=['POST'], strict_slashes=False)
 def create_place_review(place_id):
     """update places_reviews.py from engine storage"""
-    review = storage.get(Review, place_id)
-    if not review:
+    place = storage.get(Review, place_id)
+    if not place:
         abort(404)
 
     if not request.get_json():
         abort(400, description='Not a JSON')
+
     if 'user_id' not in request.get_json():
         abort(400, description='Missing user_id')
-    if 'name' not in request.get_json():
-        abort(400, description='Missing name')
+
     if 'text' not in request.get_json():
         abort(400, description='Missing text')
 
