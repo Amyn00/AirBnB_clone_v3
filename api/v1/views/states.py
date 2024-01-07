@@ -10,9 +10,7 @@ app = Flask(__name__)
 app_views = Blueprint('app_views', __name__)
 
 
-app_views.route('/states', methods=['GET'], strict_slashes=False)
-
-
+@app_views.route('/states', methods=['GET'], strict_slashes=False)
 def get_states():
     """get all states object"""
     all_states = storage.all(State).values()
@@ -22,9 +20,7 @@ def get_states():
     return jsonify(new_list)
 
 
-app_views.route('/states/<state_id>', methods=['GET'], strict_slashes=False)
-
-
+@app_views.route('/states/<state_id>', methods=['GET'], strict_slashes=False)
 def get_state_id(state_id):
     """get state by id"""
     state = storage.get(State, state_id)
@@ -33,9 +29,8 @@ def get_state_id(state_id):
     return jsonify(state.to_dict())
 
 
-app_views.route('/states/<state_id>', methods=['DELETE'], strict_slashes=False)
-
-
+@app_views.route('/states/<state_id>',
+                 methods=['DELETE'], strict_slashes=False)
 def delete_state(state_id):
     """delete state from engine storage"""
     state = storage.get(State, state_id)
@@ -46,9 +41,7 @@ def delete_state(state_id):
     return make_response(jsonify({}), 200)
 
 
-app_views.route('/states', methods=['POST'], strict_slashes=False)
-
-
+@app_views.route('/states', methods=['POST'], strict_slashes=False)
 def create_state():
     """update state from engine storage"""
     if not request.get_json():
@@ -61,9 +54,7 @@ def create_state():
     return make_response(jsonify(new_state.to_dict()), 201)
 
 
-app_views.route('/states/<state_id>', methods=['PUT'], strict_slashes=False)
-
-
+@app_views.route('/states/<state_id>', methods=['PUT'], strict_slashes=False)
 def update_state(state_id):
     """update state by id"""
     state = storage.get(State, state_id)
@@ -80,9 +71,7 @@ def update_state(state_id):
     return make_response(jsonify(state.to_dict()), 200)
 
 
-# app_views.route('/testing', methods=['GET'], strict_slashes=False)
-
-
+# @app_views.route('/testing', methods=['GET'], strict_slashes=False)
 # def testing():
 #     """get all states object"""
 #     return jsonify({'testing': 1212})

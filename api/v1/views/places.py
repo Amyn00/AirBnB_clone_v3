@@ -12,10 +12,8 @@ app = Flask(__name__)
 app_views = Blueprint('app_views', __name__)
 
 
-app_views.route('/cities/<city_id>/places',
+@app_views.route('/cities/<city_id>/places',
                 methods=['GET'], strict_slashes=False)
-
-
 def get_places(city_id):
     """get all places object"""
     all_places = storage.all(Place).values()
@@ -30,10 +28,8 @@ def get_places(city_id):
     return jsonify(new_list)
 
 
-app_views.route('/places/<place_id>',
+@app_views.route('/places/<place_id>',
                 methods=['GET'], strict_slashes=False)
-
-
 def get_place_id(place_id):
     """get places by id"""
     place = storage.get(Place, place_id)
@@ -42,10 +38,8 @@ def get_place_id(place_id):
     return jsonify(place.to_dict())
 
 
-app_views.route('/places/<place_id>',
+@app_views.route('/places/<place_id>',
                 methods=['DELETE'], strict_slashes=False)
-
-
 def delete_place(place_id):
     """delete place from engine storage"""
     place = storage.get(Place, place_id)
@@ -56,10 +50,8 @@ def delete_place(place_id):
     return make_response(jsonify({}), 200)
 
 
-app_views.route('/cities/<city_id>/places',
+@app_views.route('/cities/<city_id>/places',
                 methods=['POST'], strict_slashes=False)
-
-
 def create_place(city_id):
     """update places from engine storage"""
     city = storage.get(City, city_id)
@@ -85,10 +77,8 @@ def create_place(city_id):
     return make_response(jsonify(new_place.to_dict()), 201)
 
 
-app_views.route('/places/<place_id>',
+@app_views.route('/places/<place_id>',
                 methods=['PUT'], strict_slashes=False)
-
-
 def update_place(place_id):
     """update place by id"""
     place = storage.get(Place, place_id)
