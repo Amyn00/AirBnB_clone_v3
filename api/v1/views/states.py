@@ -20,7 +20,8 @@ def get_states():
     return jsonify(new_list)
 
 
-@app_views.route('/api/v1/states/<state_id>', methods=['GET'], strict_slashes=False)
+@app_views.route('/api/v1/states/<state_id>',
+                 methods=['GET'], strict_slashes=False)
 def get_state_id(state_id):
     """get state by id"""
     state = storage.get(State, state_id)
@@ -54,7 +55,8 @@ def create_state():
     return make_response(jsonify(new_state.to_dict()), 201)
 
 
-@app_views.route('/api/v1/states/<state_id>', methods=['PUT'], strict_slashes=False)
+@app_views.route('/api/v1/states/<state_id>',
+                 methods=['PUT'], strict_slashes=False)
 def update_state(state_id):
     """update state by id"""
     state = storage.get(State, state_id)
