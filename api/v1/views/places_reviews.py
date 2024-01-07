@@ -10,12 +10,8 @@ from flask import Flask, Blueprint, jsonify, abort, make_response, request
 from api.v1.views import app_views
 
 
-# app = Flask(__name__)
-# app_views = Blueprint('app_views', __name__)
-
-
-@app_views.route('/places/<place_id>/reviews',
-                methods=['GET'], strict_slashes=False)
+@app_views.route('/api/v1/places/<place_id>/reviews',
+                 methods=['GET'], strict_slashes=False)
 def get_reviews(place_id):
     """get all places_reviews.py object"""
     all_reviews = storage.all(Review).values()
@@ -30,8 +26,8 @@ def get_reviews(place_id):
     return jsonify(new_list)
 
 
-@app_views.route('/reviews/<review_id>',
-                methods=['GET'], strict_slashes=False)
+@app_views.route('/api/v1/reviews/<review_id>',
+                 methods=['GET'], strict_slashes=False)
 def get_review_id(review_id):
     """get places_reviews.py by id"""
     review = storage.get(Review, review_id)
@@ -40,8 +36,8 @@ def get_review_id(review_id):
     return jsonify(review.to_dict())
 
 
-@app_views.route('/reviews/<review_id>',
-                methods=['DELETE'], strict_slashes=False)
+@app_views.route('/api/v1/reviews/<review_id>',
+                 methods=['DELETE'], strict_slashes=False)
 def delete_review(review_id):
     """delete places_reviews.py from engine storage"""
     review = storage.get(Review, review_id)
@@ -52,8 +48,8 @@ def delete_review(review_id):
     return make_response(jsonify({}), 200)
 
 
-@app_views.route('/cities/places/<place_id>/reviews',
-                methods=['POST'], strict_slashes=False)
+@app_views.route('/api/v1/cities/places/<place_id>/reviews',
+                 methods=['POST'], strict_slashes=False)
 def create_place_review(place_id):
     """update places_reviews.py from engine storage"""
     review = storage.get(Review, place_id)
@@ -84,8 +80,8 @@ def create_place_review(place_id):
     return make_response(jsonify(new_review.to_dict()), 201)
 
 
-@app_views.route('/reviews/<review_id>',
-                methods=['PUT'], strict_slashes=False)
+@app_views.route('/api/v1/reviews/<review_id>',
+                 methods=['PUT'], strict_slashes=False)
 def update_place_review(review_id):
     """update places_reviews.py by id"""
     review = storage.get(Review, review_id)
