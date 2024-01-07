@@ -6,11 +6,7 @@ from flask import Flask, Blueprint, jsonify, abort, make_response, request
 from api.v1.views import app_views
 
 
-# app = Flask(__name__)
-# app_views = Blueprint('app_views', __name__)
-
-
-@app_views.route('/users', methods=['GET'], strict_slashes=False)
+@app_views.route('/api/v1/users', methods=['GET'], strict_slashes=False)
 def get_users():
     """get all users object"""
     all_users = storage.all(User).values()
@@ -20,8 +16,8 @@ def get_users():
     return jsonify(new_list)
 
 
-@app_views.route('/users/<user_id>',
-                methods=['GET'], strict_slashes=False)
+@app_views.route('/api/v1/users/<user_id>',
+                 methods=['GET'], strict_slashes=False)
 def get_user_id(user_id):
     """get user by id"""
     user = storage.get(User, user_id)
@@ -30,8 +26,8 @@ def get_user_id(user_id):
     return jsonify(user.to_dict())
 
 
-@app_views.route('/users/<user_id>',
-                methods=['DELETE'], strict_slashes=False)
+@app_views.route('/api/v1/users/<user_id>',
+                 methods=['DELETE'], strict_slashes=False)
 def delete_user(user_id):
     """delete user from engine storage"""
     user = storage.get(User, user_id)
@@ -42,7 +38,7 @@ def delete_user(user_id):
     return make_response(jsonify({}), 200)
 
 
-@app_views.route('/users', methods=['POST'], strict_slashes=False)
+@app_views.route('/api/v1/users', methods=['POST'], strict_slashes=False)
 def create_user():
     """update users from engine storage"""
     if not request.get_json():
@@ -57,8 +53,8 @@ def create_user():
     return make_response(jsonify(new_user.to_dict()), 201)
 
 
-@app_views.route('/users/<user_id>',
-                methods=['PUT'], strict_slashes=False)
+@app_views.route('/api/v1/users/<user_id>',
+                 methods=['PUT'], strict_slashes=False)
 def update_users(user_id):
     """update user by id"""
     user = storage.get(User, user_id)
