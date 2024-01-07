@@ -43,9 +43,9 @@ def delete_review(review_id):
     return make_response(jsonify({}), 200)
 
 
-@app_views.route('/api/v1/cities/places/<place_id>/reviews',
+@app_views.route('/api/v1/places/<place_id>/reviews',
                  methods=['POST'], strict_slashes=False)
-def create_place_review(place_id):
+def place_review_create(place_id):
     """update places_reviews.py from engine storage"""
     place = storage.get(Review, place_id)
     if not place:
