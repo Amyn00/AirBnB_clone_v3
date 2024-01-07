@@ -6,8 +6,8 @@ from flask import Flask, Blueprint, jsonify, abort, make_response, request
 from api.v1.views import app_views
 
 
-app = Flask(__name__)
-app_views = Blueprint('app_views', __name__)
+# app = Flask(__name__)
+# app_views = Blueprint('app_views', __name__)
 
 
 @app_views.route('/users', methods=['GET'], strict_slashes=False)

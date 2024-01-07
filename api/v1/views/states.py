@@ -6,8 +6,8 @@ from flask import Flask, Blueprint, jsonify, abort, make_response, request
 from api.v1.views import app_views
 
 
-app = Flask(__name__)
-app_views = Blueprint('app_views', __name__)
+# app = Flask(__name__)
+# app_views = Blueprint('app_views', __name__)
 
 
 @app_views.route('/states', methods=['GET'], strict_slashes=False)
@@ -71,7 +71,7 @@ def update_state(state_id):
     return make_response(jsonify(state.to_dict()), 200)
 
 
-# @app_views.route('/testing', methods=['GET'], strict_slashes=False)
-# def testing():
-#     """get all states object"""
-#     return jsonify({'testing': 1212})
+@app_views.route('/testing', methods=['GET'], strict_slashes=False)
+def testing():
+    """get all states object"""
+    return jsonify({'testing': 1212})

@@ -54,7 +54,7 @@ def delete_review(review_id):
 
 @app_views.route('/cities/places/<place_id>/reviews',
                 methods=['POST'], strict_slashes=False)
-def create_place(place_id):
+def create_place_review(place_id):
     """update places_reviews.py from engine storage"""
     review = storage.get(Review, place_id)
     if not review:
@@ -86,7 +86,7 @@ def create_place(place_id):
 
 @app_views.route('/reviews/<review_id>',
                 methods=['PUT'], strict_slashes=False)
-def update_place(review_id):
+def update_place_review(review_id):
     """update places_reviews.py by id"""
     review = storage.get(Review, review_id)
     if not review:
