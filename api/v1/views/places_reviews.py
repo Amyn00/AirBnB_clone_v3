@@ -56,14 +56,12 @@ def create_place_review(place_id):
 
     if 'user_id' not in request.get_json():
         abort(400, description='Missing user_id')
-
-    if 'text' not in request.get_json():
-        abort(400, description='Missing text')
-
     data = request.get_json()
     user = storage.get(User, data['user_id'])
     if not user:
         abort(404)
+    if 'text' not in request.get_json():
+        abort(400, description='Missing text')
 
     data['place_id'] = place_id
     new_review = Review(**data)
