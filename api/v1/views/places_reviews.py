@@ -14,16 +14,11 @@ from api.v1.views import app_views
                  methods=['GET'], strict_slashes=False)
 def get_reviews(place_id):
     """get all places_reviews.py object"""
-    all_reviews = storage.all(Review).values()
     place = storage.get(Place, place_id)
     if not place:
         abort(404)
-    new_list = []
-    for place in all_reviews:
-        for place in place.cities:
-            if place.id == place_id:
-                new_list.append(place.to_dict())
-    return jsonify(new_list)
+    reviews = [review.to_dict() for review in place.reviews]
+    return jsonify(reviews)
 
 
 @app_views.route('/api/v1/reviews/<review_id>',
