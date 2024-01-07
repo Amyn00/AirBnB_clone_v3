@@ -12,16 +12,11 @@ from api.v1.views import app_views
                  methods=['GET'], strict_slashes=False)
 def get_places(city_id):
     """get all places object"""
-    all_places = storage.all(Place).values()
     city = storage.get(City, city_id)
     if not city:
         abort(404)
-    new_list = []
-    for place in all_places:
-        for city in place.cities:
-            if city.id == city_id:
-                new_list.append(place.to_dict())
-    return jsonify(new_list)
+    places = [place.to_dict() for place in city.places]
+    return jsonify(places)
 
 
 @app_views.route('/api/v1/places/<place_id>',
