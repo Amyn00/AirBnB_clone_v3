@@ -2,7 +2,8 @@
 """Index file to connect to API."""
 from models import storage
 from api.v1.views import app_views
-from flask import Flask, Blueprint, jsonify
+# from flask import Flask, Blueprint, jsonify
+from flask import jsonify
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 
