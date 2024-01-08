@@ -15,13 +15,14 @@ def states_list_route():
     """
     Cities of states: display a HTML page: (inside the tag <BODY>)
     Returns:
-        html: Template that lists all cities states and amenity sort by name desc
+        html: Template that lists all cities states and amenity sort
+        by name desc
     """
     data = {
         "states": storage.all("State").values(),
-	"places": storage.all("Place").values(),
-	"amenities": storage.all("Amenity").values()
-    }
+        "places": storage.all("Place").values(),
+        "amenities": storage.all("Amenity").values()
+        }
     return render_template("100-hbnb.html", models=data)
 
 
