@@ -47,7 +47,7 @@ def delete_review(review_id):
                  methods=['POST'], strict_slashes=False)
 def place_review_create(place_id):
     """update places_reviews.py from engine storage"""
-    place = storage.get(Review, place_id)
+    place = storage.get(Place, place_id)
     if not place:
         abort(404)
 
