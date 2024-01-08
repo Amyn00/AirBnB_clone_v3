@@ -3,12 +3,10 @@
 from models import storage
 from api.v1.views import app_views
 # from flask import Flask, Blueprint, jsonify
-from flask import jsonify, Flask
-app = Flask(__name__)
-app.url_map.strict_slashes = False
+from flask import jsonify
 
 
-@app_views.route('/stats')
+@app_views.route('/stats', methods=['GET'], strict_slashes=False)
 def get_stats():
     """Retrive the number of each object by type."""
     stats = {
@@ -22,7 +20,7 @@ def get_stats():
     return jsonify(stats)
 
 
-@app_views.route('/status')
+@app_views.route('/status', strict_slashes=False)
 def status():
     """Return the status of the API."""
     return jsonify({"status": "OK"})
