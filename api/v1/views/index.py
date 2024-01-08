@@ -6,7 +6,7 @@ from api.v1.views import app_views
 from flask import jsonify
 
 
-@app_views.route('/stats', methods=['GET'], strict_slashes=False)
+@app_views.route('/api/v1/stats', strict_slashes=False)
 def get_stats():
     """Retrive the number of each object by type."""
     stats = {
@@ -24,3 +24,7 @@ def get_stats():
 def status():
     """Return the status of the API."""
     return jsonify({"status": "OK"})
+
+
+if __name__ == "__main__":
+    pass
