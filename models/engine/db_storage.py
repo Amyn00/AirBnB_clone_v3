@@ -44,7 +44,7 @@ class DBStorage:
         if not self.__session:
             self.reload()
         objects = {}
-        if type(cls) == str:
+        if type(cls) is str:
             cls = name2class.get(cls, None)
         if cls:
             for obj in self.__session.query(cls):

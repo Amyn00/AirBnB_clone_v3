@@ -26,14 +26,13 @@ class FileStorage:
         """returns the dictionary __objects"""
         if not cls:
             return self.__objects
-        elif type(cls) == str:
+        elif type(cls) is str:
             return {k: v for k, v in self.__objects.items()
                     if v.__class__.__name__ == cls}
         else:
             return {k: v for k, v in self.__objects.items()
                     if v.__class__ == cls}
-    
-    
+
     def new(self, obj):
         """sets in __objects the obj with key <obj class name>.id"""
         if obj is not None:
@@ -55,7 +54,7 @@ class FileStorage:
                 jo = json.load(f)
             for key in jo:
                 self.__objects[key] = classes[jo[key]["__class__"]](**jo[key])
-        except:
+        except Exception:
             pass
 
     def delete(self, obj=None):
@@ -81,7 +80,7 @@ class FileStorage:
     def count(self, cls=None):
         """Count number of objects in storage"""
         total = 0
-        if type(cls) == str and cls in classes:
+        if type(cls) is str and cls in classes:
             total = len(self.all(cls))
         elif cls is None:
             total = len(self.__objects)
