@@ -3,7 +3,7 @@
 from models import storage
 from api.v1.views import app_views
 # from flask import Flask, Blueprint, jsonify
-from flask import jsonify
+from flask import jsonify, Flask
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 
